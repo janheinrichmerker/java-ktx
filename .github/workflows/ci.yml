@@ -16,7 +16,7 @@ jobs:
       - name: "💪 Grant execute permission for gradlew"
         run: "chmod +x gradlew"
       - name: "🏗️ Build with Gradle"
-        run: "./gradlew :source:build"
+        run: "./gradlew build"
   test:
     needs: build
     name: "✅ Gradle test"
@@ -31,4 +31,4 @@ jobs:
       - name: "💪 Grant execute permission for gradlew"
         run: "chmod +x gradlew"
       - name: "✅ Test with Gradle"
-        run: "./gradlew :source:test"
+        run: "./gradlew test"
