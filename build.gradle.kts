@@ -17,6 +17,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
 }
 
+lateinit var javadocJar: TaskProvider<Jar>
+lateinit var sourcesJar: TaskProvider<Jar>
 
 tasks {
     // Compile Kotlin to JVM1.8 bytecode.
@@ -36,32 +38,28 @@ tasks {
     dokka {
         outputFormat = "html"
     }
-}
 
-// JAR containing Kotlin/Java documentation.
-val javadoc = tasks.create<Jar>("javadocJar") {
-    dependsOn(tasks.dokka)
-    from(tasks.dokka.get().outputDirectory)
-}
+    // JAR containing Kotlin/Java documentation.
+    javadocJar = register<Jar>("javadocJar") {
+        group = JavaBasePlugin.DOCUMENTATION_GROUP
+        dependsOn(dokka)
+        from(dokka)
+        archiveClassifier.set("javadoc")
+    }
 
-// JAR containing all source files.
-val sources = tasks.create<Jar>("sourcesJar") {
-    dependsOn("classes")
-    from(sourceSets.main.get().allSource)
+    // JAR containing all source files.
+    sourcesJar = register<Jar>("sourcesJar") {
+        from(sourceSets.main.get().allSource)
+        archiveClassifier.set("sources")
+    }
 }
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-
-            artifact(sources) {
-                classifier = "sources"
-            }
-
-            artifact(javadoc) {
-                classifier = "javadoc"
-            }
+            artifact(sourcesJar.get())
+            artifact(javadocJar.get())
         }
     }
 }
