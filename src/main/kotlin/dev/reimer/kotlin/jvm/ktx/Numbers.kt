@@ -114,72 +114,26 @@ fun Iterable<Int>.maxDelta(): Int? = asSequence().maxDelta()
 
 fun IntArray.maxDelta(): Int? = asSequence().maxDelta()
 
-inline fun <T> Iterable<T>.productBy(selector: (T) -> Int): Int {
-    var product: Int = 0
-    for (element in this) {
-        product *= selector(element)
-    }
-    return product
-}
+inline fun <T> Iterable<T>.productBy(selector: (T) -> Int): Int =
+    fold(1) { acc, element -> acc * selector(element) }
 
-inline fun <T> Iterable<T>.productByDouble(selector: (T) -> Double): Double {
-    var product: Double = 0.0
-    for (element in this) {
-        product *= selector(element)
-    }
-    return product
-}
+inline fun <T> Iterable<T>.productByDouble(selector: (T) -> Double): Double =
+    fold(1.0) { acc, element -> acc * selector(element) }
 
 @JvmName("productOfByte")
-fun Iterable<Byte>.product(): Int {
-    var product: Int = 0
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Byte>.product(): Int = fold(1) { acc, element -> acc * element }
 
 @JvmName("productOfShort")
-fun Iterable<Short>.product(): Int {
-    var product: Int = 0
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Short>.product(): Int = fold(1) { acc, element -> acc * element }
 
 @JvmName("productOfInt")
-fun Iterable<Int>.product(): Int {
-    var product: Int = 0
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Int>.product(): Int = fold(1) { acc, element -> acc * element }
 
 @JvmName("productOfLong")
-fun Iterable<Long>.product(): Long {
-    var product: Long = 0L
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Long>.product(): Long = fold(1L) { acc, element -> acc * element }
 
 @JvmName("productOfFloat")
-fun Iterable<Float>.product(): Float {
-    var product: Float = 0.0f
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Float>.product(): Float = fold(1.0f) { acc, element -> acc * element }
 
 @JvmName("productOfDouble")
-fun Iterable<Double>.product(): Double {
-    var product: Double = 0.0
-    for (element in this) {
-        product *= element
-    }
-    return product
-}
+fun Iterable<Double>.product(): Double = fold(1.0) { acc, element -> acc * element }
