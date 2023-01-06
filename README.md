@@ -1,5 +1,5 @@
-[![GitHub Actions](https://img.shields.io/github/workflow/status/reimersoftware/java-ktx/CI?style=flat-square)](https://github.com/reimersoftware/java-ktx/actions?query=workflow%3A"CI")
-[![JitPack](https://img.shields.io/jitpack/v/github/reimersoftware/java-ktx?style=flat-square)](https://jitpack.io/#dev.reimer/java-ktx)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/heinrichreimer/java-ktx/ci.yml?branch=master&style=flat-square)](https://github.com/heinrichreimer/java-ktx/actions/workflows/ci.yml)
+[![JitPack](https://img.shields.io/jitpack/v/github/heinrichreimer/java-ktx?style=flat-square)](https://jitpack.io/#dev.reimer/java-ktx)
 
 # 🧰 java-ktx<sup>[α](#status-α)</sup>
 
