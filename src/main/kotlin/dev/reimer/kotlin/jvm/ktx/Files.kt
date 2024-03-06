@@ -3,7 +3,12 @@ package dev.reimer.kotlin.jvm.ktx
 import java.io.BufferedWriter
 import java.io.File
 import java.nio.charset.Charset
+import kotlin.io.path.createTempFile
 
+@Deprecated(
+    message = "Deprecated due to deprecation of kotlin.io.createTempFile."
+)
+@Suppress("DEPRECATION")
 fun <R> useTempFile(
     prefix: String = "tmp",
     suffix: String? = null,

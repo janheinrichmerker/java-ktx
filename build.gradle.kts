@@ -4,28 +4,25 @@ plugins {
     kotlin("jvm") version "1.9.22"
     `maven-publish`
     id("org.jetbrains.dokka") version "0.9.17"
+    id("com.palantir.git-version") version "3.0.0"
 }
 
+val gitVersion: groovy.lang.Closure<String> by extra
 group = "dev.reimer"
-version = "0.1.3"
+version = gitVersion()
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
 }
 
 lateinit var javadocJar: TaskProvider<Jar>
 lateinit var sourcesJar: TaskProvider<Jar>
 
 tasks {
-    // Compile Kotlin to JVM1.8 bytecode.
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-
     // Include project license in generated JARs.
     withType<Jar> {
         from(project.projectDir) {

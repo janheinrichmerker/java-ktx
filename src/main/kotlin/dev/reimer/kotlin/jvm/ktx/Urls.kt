@@ -1,8 +1,9 @@
 package dev.reimer.kotlin.jvm.ktx
 
 import java.net.URL
+import java.net.URI
 
-fun String.toURL() = URL(this)
+fun String.toURL() = URI(this).toURL()
 
 fun URL.copy(
     protocol: String = this.protocol,
@@ -10,5 +11,5 @@ fun URL.copy(
     port: Int = this.port,
     file: String = this.file
 ): URL {
-    return URL(protocol, host, port, file)
+    return URI(protocol, "$host:$port", file).toURL()
 }
